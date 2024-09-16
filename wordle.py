@@ -6,6 +6,7 @@ green = '\033[92m'
 yellow = '\033[33m'
 def generate_hint(user_guess):
     color = default
+    hint = ""
     for i in range(5):
         if (user_guess[i] == word[i]):
             color = green
@@ -13,13 +14,15 @@ def generate_hint(user_guess):
             color = yellow
         else:
             color = default
-        return user_guess
+        hint = hint + color + user_guess[i] + default
+    return hint
 
 
 def game_loop():
     # looping 6 times
     for i in range(6):
-        guess = input("what is your guess?")
+        guess = input("what is your guess? \n")
+        print(generate_hint(guess))
         if guess == word:
             print("congratulations!!!")
             break
